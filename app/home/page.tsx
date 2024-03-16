@@ -274,30 +274,27 @@ const HomePage = (props: Props) => {
     }
   }
 
-  function startRecording(doBeep: boolean) {
+  async function startRecording(doBeep: boolean) {
     if (webcamRef.current && mediaRecorderRef.current?.state !== "recording") {
+      toast("User Detected!!! Email sent. Recording started.");
       mediaRecorderRef.current?.start();
       doBeep && beep(volume);
 
-      emailjs
-        .send(
-          "service_7dc4ilc",
-          "template_uxiz63a",
-          {
-            message: "User detected in unauthorized area",
+      //api
+      try {
+        const response = await fetch("http://localhost:3000/mail", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            publicKey: "BxGW4rXZ4MXKbl1hx",
-          }
-        )
-        .then(
-          () => {
-            console.log("SUCCESS!");
-          },
-          (error) => {
-            console.log("FAILED...", error);
-          }
-        );
+        });
+  
+        if (response.ok) {
+          console.log("Email Send successful");
+        }
+      } catch (error) {
+        console.error("Error :", error);
+      }
 
       stopTimeout = setTimeout(() => {
         if (mediaRecorderRef.current?.state === "recording") {

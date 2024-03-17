@@ -12,6 +12,7 @@ import { beep } from "@/utils/audio";
 import {
   Camera,
   FlipHorizontal,
+  Mail,
   MoonIcon,
   PersonStanding,
   SunIcon,
@@ -27,7 +28,7 @@ import "@tensorflow/tfjs-backend-cpu";
 import "@tensorflow/tfjs-backend-webgl";
 import { DetectedObject, ObjectDetection } from "@tensorflow-models/coco-ssd";
 import { drawOnCanvas } from "@/utils/draw";
-import emailjs from "@emailjs/browser";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -46,6 +47,7 @@ const HomePage = (props: Props) => {
   const [loading, setLoading] = useState(false);
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const router = useRouter();
 
   // initialize the media recorder
   useEffect(() => {
@@ -195,6 +197,10 @@ const HomePage = (props: Props) => {
                 <PersonStanding />
               )}
             </Button>
+            <Separator className="my-2" />
+            <button className="px-2" onClick={() => router.push("/update")}>
+              <Mail />
+            </button>
           </div>
           {/* Bottom Secion  */}
           <div className="flex flex-col gap-2">
@@ -288,7 +294,7 @@ const HomePage = (props: Props) => {
             "Content-Type": "application/json",
           },
         });
-  
+
         if (response.ok) {
           console.log("Email Send successful");
         }

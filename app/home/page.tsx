@@ -288,7 +288,7 @@ const HomePage = (props: Props) => {
 
       //api
       try {
-        const response = await fetch("http://localhost:3000/mail", {
+        const response = await fetch("https://unauthorized-area-backend.onrender.com/mail", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

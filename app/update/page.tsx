@@ -11,7 +11,7 @@ const LoginPage = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/updateEmail", {
+      const response = await fetch("https://unauthorized-area-backend.onrender.com/updateEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

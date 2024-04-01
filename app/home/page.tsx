@@ -133,7 +133,7 @@ const HomePage = (props: Props) => {
   }, [webcamRef.current, model, mirrored, autoRecordEnabled, runPrediction]);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex sm:flex-row flex-col h-screen">
       {/* Left division - webcam and Canvas  */}
       <div className="relative">
         <div className="relative h-screen w-full">

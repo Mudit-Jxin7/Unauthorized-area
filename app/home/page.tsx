@@ -284,7 +284,9 @@ const HomePage = (props: Props) => {
     if (webcamRef.current && mediaRecorderRef.current?.state !== "recording") {
       toast("User Detected!!! Email sent. Recording started.");
       mediaRecorderRef.current?.start();
-      doBeep && beep(volume);
+
+      console.log(doBeep)
+      !doBeep && beep(volume);
 
       //api
       try {

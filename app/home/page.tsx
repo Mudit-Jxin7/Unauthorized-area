@@ -6,7 +6,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Separator } from "@/components/ui/separator";
+// import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { beep } from "@/utils/audio";
 import {
@@ -151,7 +151,7 @@ const HomePage = (props: Props) => {
 
       {/* Righ division - container for buttion panel and wiki secion  */}
       <div className="flex flex-row flex-1">
-        <div className="border-primary/5 border-2 max-w-xs flex flex-col gap-2 justify-between shadow-md rounded-md p-4">
+        <div className="border-primary/5 border-2 w-full mx-auto sm:max-w-xs flex sm:flex-col gap-2 justify-between shadow-md rounded-md p-4">
           {/* top secion  */}
           <div className="flex flex-col gap-2">
             <ModeToggle />
@@ -165,12 +165,12 @@ const HomePage = (props: Props) => {
               <FlipHorizontal />
             </Button>
 
-            <Separator className="my-2" />
+            {/* <Separator className="my-2" /> */}
           </div>
 
           {/* Middle section  */}
           <div className="flex flex-col gap-2">
-            <Separator className="my-2" />
+            {/* <Separator className="my-2" /> */}
             <Button
               variant={"outline"}
               size={"icon"}
@@ -185,7 +185,7 @@ const HomePage = (props: Props) => {
             >
               <Video />
             </Button>
-            <Separator className="my-2" />
+            {/* <Separator className="my-2" /> */}
             <Button
               variant={autoRecordEnabled ? "destructive" : "outline"}
               size={"icon"}
@@ -197,14 +197,14 @@ const HomePage = (props: Props) => {
                 <PersonStanding />
               )}
             </Button>
-            <Separator className="my-2" />
+            {/* <Separator className="my-2" /> */}
             <button className="px-2" onClick={() => router.push("/update")}>
               <Mail />
             </button>
           </div>
           {/* Bottom Secion  */}
           <div className="flex flex-col gap-2">
-            <Separator className="my-2" />
+            {/* <Separator className="my-2" /> */}
 
             <Popover>
               <PopoverTrigger asChild>
@@ -326,7 +326,7 @@ const HomePage = (props: Props) => {
   // inner components
   function RenderFeatureHighlightsSection() {
     return (
-      <div className="text-xs text-muted-foreground">
+      <div className="hidden sm:flex text-xs text-muted-foreground">
         <ul className="space-y-4">
           <li>
             <strong>Dark Mode/Sys Theme 🌗</strong>
@@ -353,7 +353,7 @@ const HomePage = (props: Props) => {
               <FlipHorizontal size={14} />
             </Button>
           </li>
-          <Separator />
+          {/* <Separator /> */}
           <li>
             <strong>Take Pictures 📸</strong>
             <p>Capture snapshots at any moment from the video feed.</p>
@@ -378,7 +378,7 @@ const HomePage = (props: Props) => {
               <Video size={14} />
             </Button>
           </li>
-          <Separator />
+          {/* <Separator /> */}
           <li>
             <strong>Enable/Disable Auto Record 🚫</strong>
             <p>
@@ -411,7 +411,7 @@ const HomePage = (props: Props) => {
               <span style={{ color: "#00B612" }}>green</span>.
             </p>
           </li>
-          <Separator />
+          {/* <Separator /> */}
           <li className="space-y-4">
             <strong>Share your thoughts 💬 </strong>
             <br />

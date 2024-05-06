@@ -285,31 +285,33 @@ const HomePage = (props: Props) => {
       toast("User Detected!!! Email sent. Recording started.");
       mediaRecorderRef.current?.start();
 
-      console.log(doBeep)
-      !doBeep && beep(volume);
+      if (doBeep) {
+        beep(volume);
+        try {
+          const response = await fetch(
+            "https://unauthorized-area-backend.onrender.com/mail",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
 
-      //api
-      try {
-        const response = await fetch("https://unauthorized-area-backend.onrender.com/mail", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (response.ok) {
-          console.log("Email Send successful");
+          if (response.ok) {
+            console.log("Email Send successful");
+          }
+        } catch (error) {
+          console.error("Error :", error);
         }
-      } catch (error) {
-        console.error("Error :", error);
+
+        stopTimeout = setTimeout(() => {
+          if (mediaRecorderRef.current?.state === "recording") {
+            mediaRecorderRef.current.requestData();
+            mediaRecorderRef.current.stop();
+          }
+        }, 30000);
       }
-
-      stopTimeout = setTimeout(() => {
-        if (mediaRecorderRef.current?.state === "recording") {
-          mediaRecorderRef.current.requestData();
-          mediaRecorderRef.current.stop();
-        }
-      }, 30000);
     }
   }
 
